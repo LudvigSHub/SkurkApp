@@ -6,11 +6,11 @@ import FeaturedMealCard from "./cards/FeaturedMealCard";
 
 function HeroSection() {
     const featuredMeal = {
-        name: "Korean Beef Bowl",
-    kcal: 620,
-    protein: 42,
-    price: 109,
-    image: koreanBeefBowl,
+      name: "Korean Beef Bowl",
+      kcal: 620,
+      protein: 42,
+      price: 109,
+      image: koreanBeefBowl,
     };
   return (
     <section className="hero-section">
