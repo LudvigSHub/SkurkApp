@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import koreanBeefBowl from "../assets/foodPictures/KoreanBeefBowl.png";
 import mascot from "../assets/mascot/Mascot_PekaUppVänster.png";
 import FeaturedMealCard from "./cards/FeaturedMealCard";
+import "./HeroSection.css";
 
 function HeroSection() {
     const featuredMeal = {
@@ -26,11 +27,11 @@ function HeroSection() {
         </p>
 
         <div className="hero-actions">
-          <Link to="/menu" className="primary-button">
+          <Link to="/menu" className="button button-primary hero-button">
             Se meny
           </Link>
 
-          <a href="#how-it-works" className="secondary-button">
+          <a href="#how-it-works" className="button button-secondary hero-button">
             Så funkar det
           </a>
         </div>

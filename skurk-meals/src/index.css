@@ -36,8 +36,8 @@
   --page-padding: 32px;
 
   /* UI */
-  --radius-button: 999px;
-  --radius-card: 28px;
+  --radius-button: 8px;
+  --radius-card: 8px;
 
   --shadow-card: 0 20px 50px rgba(56, 102, 65, 0.18);
 }

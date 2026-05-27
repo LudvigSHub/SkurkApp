@@ -1,3 +1,5 @@
+import "./FeaturedMealCard.css";
+
 function FeaturedMealCard({ meal, mascotImage }) {
   return (
     <article className="featured-meal-card">
@@ -13,8 +15,9 @@ function FeaturedMealCard({ meal, mascotImage }) {
         <ul>
           <li>{meal.kcal} kcal</li>
           <li>{meal.protein}g protein</li>
-          <li>{meal.price}kr</li>
+          
         </ul>
+        <p>{meal.price}kr</p>
       </div>
 
       <button className="featured-meal-button">

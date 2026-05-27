@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import skurkLogo from "../assets/SKURK_logo.png";
+import "./Navbar.css";
 
 function Navbar() {
   return (
