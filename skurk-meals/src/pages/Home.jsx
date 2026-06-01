@@ -1,4 +1,5 @@
 import HeroSection from "../components/HeroSection";
+import HowItWorksSection from "../components/HowItWorksSection";
 import PopularMealsSection from "../components/PopularMealsSection"
 
 function Home() {
@@ -6,6 +7,7 @@ function Home() {
     <>
     <HeroSection />
     <PopularMealsSection />
+    <HowItWorksSection />
     </>
   );
 }

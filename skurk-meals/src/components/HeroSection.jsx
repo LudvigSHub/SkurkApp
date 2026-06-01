@@ -1,18 +1,15 @@
 import { Link } from "react-router-dom";
 
-import koreanBeefBowl from "../assets/foodPictures/KoreanBeefBowl.png";
+
 import mascot from "../assets/mascot/Mascot_PekaUppVänster.png";
 import FeaturedMealCard from "./cards/FeaturedMealCard";
+
+import { products } from "../data/products";
 import "./HeroSection.css";
 
 function HeroSection() {
-    const featuredMeal = {
-      name: "Korean Beef Bowl",
-      kcal: 620,
-      protein: 42,
-      price: 109,
-      image: koreanBeefBowl,
-    };
+    const featuredMeal = products.find((meal) => meal.showCase);
+    
   return (
     <section className="hero-section">
       <div className="hero-info-card">

@@ -1,6 +1,7 @@
 import "./FeaturedMealCard.css";
 
-function FeaturedMealCard({ meal, mascotImage }) {
+
+function FeaturedMealCard({ meal, mascotImage}) {
   return (
     <article className="featured-meal-card">
       <img

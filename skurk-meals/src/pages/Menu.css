@@ -1,0 +1,22 @@
+.menu-page {
+  padding: 32px var(--page-padding) 72px;
+}
+
+.menu-header {
+  text-align: center;
+}
+
+.menu-header h1 {
+  color: var(--color-accent);
+  font-size: var(--font-size-h1);
+  text-transform: uppercase;
+}
+
+.menu-header p {
+  margin-top: 8px;
+
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-body);
+}

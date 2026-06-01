@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 import Home from "./pages/Home";
+import Menu from "./pages/Menu";
 
 
 function App() {
@@ -14,13 +15,13 @@ function App() {
 
   return (
     <Router>
-      <div classname="app">
+      <div className="app">
      <Navbar />
 
     <main className='app-main'>
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path="/register" element={<Register />} /> */}
+        <Route path="/Menu" element={<Menu />} />
 
        
     

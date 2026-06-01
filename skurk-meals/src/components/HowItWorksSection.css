@@ -1,0 +1,11 @@
+.how-section {
+ width: min(760px, calc(100% - 64px));
+  margin: 0 auto;
+  padding: 36px 0 72px;
+
+  display: grid;
+  grid-template-columns: repeat(2, 340px);
+  gap: 40px;
+  justify-content: center;
+  align-items: start;
+}
