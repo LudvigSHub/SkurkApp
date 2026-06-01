@@ -4,6 +4,7 @@ import { useCart } from "../context/CartContext";
 
 import CheckoutForm from "../components/checkout/CheckoutForm";
 import CheckoutSummary from "../components/checkout/CheckoutSummary";
+import OrderLoading from "../components/checkout/OrderLoading";
 
 import "./Checkout.css";
 
@@ -12,6 +13,8 @@ function Checkout() {
   const { cartItems, cartTotal, clearCart } = useCart();
 
   const [errors, setErrors] = useState({});
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -72,14 +75,29 @@ function Checkout() {
       total: cartTotal,
     };
 
+    
+
+    setIsSubmitting(true);
+
+    setTimeout(() => {
+
     clearCart();
 
     navigate("/confirmation", {
-        state: {
+      state: {
         order: orderData,
-    },
-});
-  }
+      },
+    });
+  }, 5000);
+}
+
+    if (isSubmitting) {
+  return (
+    <main className="checkout-page">
+      <OrderLoading />
+    </main>
+  );
+}
 
   return (
     <main className="checkout-page">

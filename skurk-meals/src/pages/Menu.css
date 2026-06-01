@@ -20,3 +20,14 @@
   font-size: var(--font-size-body);
   font-weight: var(--font-weight-body);
 }
+
+.menu-empty-message {
+  width: 100%;
+  margin: 64px auto 0;
+
+  color: var(--color-primary);
+  font-family: var(--font-heading);
+  font-size: var(--font-size-h3);
+  text-align: center;
+  text-transform: uppercase;
+}

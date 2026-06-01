@@ -98,6 +98,10 @@
   cursor: pointer;
 }
 
+.product-card-favorite.active {
+  color: var(--color-primary);
+}
+
 .product-card-actions {
   grid-area: actions;
 
