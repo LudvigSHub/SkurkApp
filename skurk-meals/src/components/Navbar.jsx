@@ -1,11 +1,13 @@
 import { NavLink } from "react-router-dom";
 import skurkLogo from "../assets/SKURK_logo.png";
 import { useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
 
 import "./Navbar.css";
 
 function Navbar() {
   const { cartCount } = useCart();
+  const { user, isAuthenticated, logout } = useAuth();
   return (
    <header className="navbar">
       <div className="navbar-inner">
@@ -28,9 +30,20 @@ function Navbar() {
             )}
           </NavLink>
 
-          <NavLink to="/login" className="navbar-button">
-            Sign in
-          </NavLink>
+          {isAuthenticated ? (
+              <button
+                type="button"
+                className="navbar-button"
+                onClick={logout}
+              >
+                Log out
+              </button>
+            
+          ) : (
+            <NavLink to="/login" className="navbar-button">
+              Sign in
+            </NavLink>
+          )}
         </div>
       </div>
     </header>

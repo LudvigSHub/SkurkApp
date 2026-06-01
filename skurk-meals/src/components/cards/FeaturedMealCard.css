@@ -86,7 +86,7 @@
   border: none;
   border-radius: 8px;
   background-color: var(--color-accent);
-  color: var(--color-white);
+  color: var(--color-secondary);
 
   font-family: var(--font-heading);
   font-size: var(--font-size-h5);
