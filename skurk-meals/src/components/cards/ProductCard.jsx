@@ -1,6 +1,8 @@
 import "./ProductCard.css";
+import { useCart } from "../../context/CartContext.jsx";
 
 function ProductCard({ meal }) {
+  const { addToCart } = useCart();
   return (
     <article className="product-card">
       <img src={meal.image} alt={meal.name} className="product-card-image" />
@@ -18,7 +20,8 @@ function ProductCard({ meal }) {
       
 
         <div className="product-card-actions">
-            <button className="button button-primary product-card-button">
+            <button className="button button-primary product-card-button" 
+            onClick={() => addToCart(meal)}>
                 Lägg i varukorgen
             </button>
 
