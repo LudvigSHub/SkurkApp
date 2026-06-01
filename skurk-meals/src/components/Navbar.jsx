@@ -1,8 +1,11 @@
 import { NavLink } from "react-router-dom";
 import skurkLogo from "../assets/SKURK_logo.png";
+import { useCart } from "../context/CartContext";
+
 import "./Navbar.css";
 
 function Navbar() {
+  const { cartCount } = useCart();
   return (
    <header className="navbar">
       <div className="navbar-inner">
@@ -19,7 +22,10 @@ function Navbar() {
 
         <div className="navbar-actions">
           <NavLink to="/cart" className="cart-link" aria-label="Varukorg">
-            🛒
+            🛒 
+            {cartCount > 0 && (
+              <span className="cart-count">{cartCount}</span>
+            )}
           </NavLink>
 
           <NavLink to="/login" className="navbar-button">
