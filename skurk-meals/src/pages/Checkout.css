@@ -1,0 +1,119 @@
+.checkout-page {
+  width: min(var(--page-width), calc(100% - 64px));
+  margin: 0 auto;
+  padding: 56px 0 96px;
+}
+
+.checkout-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.checkout-header h1 {
+  color: var(--color-accent);
+  font-size: var(--font-size-h1);
+  text-transform: uppercase;
+}
+
+.checkout-header p {
+  margin-top: 8px;
+  color: var(--color-text);
+}
+
+.checkout-content {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 40px;
+  align-items: start;
+}
+
+.checkout-form {
+  border: 3px solid var(--color-primary);
+  border-radius: var(--radius-card);
+  padding: 32px;
+
+  background-color: var(--color-secondary);
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.checkout-form h2 {
+  margin-top: 12px;
+
+  color: var(--color-primary);
+  font-size: var(--font-size-h3);
+  text-transform: uppercase;
+}
+
+.checkout-form h2:first-child {
+  margin-top: 0;
+}
+
+.checkout-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  color: var(--color-text);
+  font-family: var(--font-heading);
+  font-size: var(--font-size-h5);
+  text-transform: uppercase;
+}
+
+.checkout-form input[type="text"],
+.checkout-form input[type="email"],
+.checkout-form input[type="tel"] {
+  width: 100%;
+  padding: 12px 14px;
+
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-button);
+
+  background-color: var(--color-secondary);
+  color: var(--color-text);
+
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  font-weight: 700;
+}
+
+.checkout-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  margin-top: 6px;
+}
+
+.checkout-radio-group p {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-h5);
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.checkout-radio-group label {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.checkout-form button[type="submit"] {
+  margin-top: 16px;
+  padding: 14px 24px;
+  width: 220px;
+}
+
+
+.form-error {
+  color: var(--color-accent);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.checkout-form input.input-error {
+  border-color: var(--color-accent);
+}
