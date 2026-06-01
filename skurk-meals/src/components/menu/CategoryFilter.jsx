@@ -1,27 +1,28 @@
 import "./CategoryFilter.css";
 
-function CategoryFilter({ selectedCategory, onSelectCategory }) {
-  const categories = [
+function CategoryFilter({ selectedFilter, onSelectFilter }) {
+  const filters = [
     "Alla rätter",
     "Nötkött",
     "Kyckling",
     "Fisk",
     "Vegetariskt",
+    "Favoriter",
   ];
 
   return (
     <div className="category-filter">
-      {categories.map((category) => (
+      {filters.map((filter) => (
         <button
-          key={category}
+          key={filter}
           className={
-            selectedCategory === category
+            selectedFilter === filter
               ? "category-filter-button active"
               : "category-filter-button"
           }
-          onClick={() => onSelectCategory(category)}
+          onClick={() => onSelectFilter(filter)}
         >
-          {category}
+          {filter}
         </button>
       ))}
     </div>

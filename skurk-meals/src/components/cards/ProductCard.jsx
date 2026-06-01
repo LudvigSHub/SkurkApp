@@ -1,8 +1,11 @@
 import "./ProductCard.css";
 import { useCart } from "../../context/CartContext.jsx";
+import { useFavorites } from "../../context/FavoritesContext.jsx";
 
 function ProductCard({ meal }) {
   const { addToCart } = useCart();
+  const { toggleFavorite, isFavorite } = useFavorites();
+  const favorite = isFavorite(meal.id);
   return (
     <article className="product-card">
       <img src={meal.image} alt={meal.name} className="product-card-image" />
@@ -25,8 +28,16 @@ function ProductCard({ meal }) {
                 Lägg i varukorgen
             </button>
 
-            <button className="product-card-favorite" aria-label="Lägg till favorit">
-                ♡
+            <button
+                className={
+                favorite
+                  ? "product-card-favorite active"
+                  : "product-card-favorite"
+              }
+                onClick={() => toggleFavorite(meal.id)}
+                aria-label="Lägg till favorit"
+            >
+                {favorite ? "♥" : "♡"}
             </button>
         </div>
     </article>
