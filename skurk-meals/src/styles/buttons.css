@@ -17,6 +17,8 @@
 .button-primary {
   background-color: var(--color-accent);
   color: var(--color-secondary);
+  padding: 14px 28px;
+  min-width: 180px;
 }
 
 .button-secondary {
