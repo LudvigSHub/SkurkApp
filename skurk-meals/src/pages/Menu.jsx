@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { products } from "../data/products";
+import { useEffect, useState } from "react";
+import { getProducts } from "../services/api.js";
 import {useFavorites} from "../context/FavoritesContext.jsx";
 
 import CategoryFilter from "../components/menu/CategoryFilter"
@@ -11,6 +11,10 @@ function Menu() {
 
   const { favoriteIds } = useFavorites();
 
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
   const filteredProducts =
     selectedFilter === "Alla rätter"
       ? products
@@ -18,6 +22,41 @@ function Menu() {
       ? products.filter((product) => favoriteIds.includes(product.id))
       : products.filter((product) => product.category === selectedFilter);
 
+      useEffect(() => {
+        async function loadProducts(){
+          try {
+            const data = await getProducts();
+            setProducts(data);
+          }catch (error) {
+            setError("Kunde inte hämta menyn. Testa att ladda om sidan.");
+          } finally{
+            setLoading(false);
+          }
+        }
+
+        loadProducts();
+        },[]);
+
+        if (loading) {
+          return (
+            <main className="menu-page">
+              <section className="menu-header">
+                <h1>MENY</h1>
+                <p>Hämtar menyn...</p>
+              </section>
+            </main>
+          )
+        }
+        if (error) {
+          return (
+            <main className="menu-page">
+              <section className="menu-header">
+                <h1>MENY</h1>
+                <p>{error}</p>
+              </section>
+            </main>
+  );
+}
   return (
     <main className="menu-page">
       <section className="menu-header">
