@@ -1,7 +1,10 @@
 import "./FeaturedMealCard.css";
 
+import { useCart } from "../../context/CartContext.jsx";
+
 
 function FeaturedMealCard({ meal, mascotImage}) {
+  const { addToCart } = useCart();
   return (
     <article className="featured-meal-card">
       <img
@@ -21,7 +24,8 @@ function FeaturedMealCard({ meal, mascotImage}) {
         <p>{meal.price}kr</p>
       </div>
 
-      <button className="featured-meal-button">
+      <button className="featured-meal-button"
+      onClick={() => addToCart(meal)}>
         Lägg i varukorgen
       </button>
 
