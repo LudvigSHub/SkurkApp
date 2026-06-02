@@ -8,13 +8,27 @@ function Confirmation() {
   const order = location.state?.order;
 
   if (!order) {
-    return (
-      <main>
+  return (
+    <main className="confirmation-page">
+      <section className="confirmation-empty">
         <h1>Ingen order hittades</h1>
-        <Link to="/menu">Till menyn</Link>
-      </main>
-    );
-  }
+        <p>
+          Du behöver slutföra en beställning innan du kan se en orderbekräftelse.
+        </p>
+
+        <div className="confirmation-empty-actions">
+          <Link to="/menu" className="button button-primary">
+            Till menyn
+          </Link>
+
+          <Link to="/cart" className="button button-secondary">
+            Till varukorgen
+          </Link>
+        </div>
+      </section>
+    </main>
+  );
+}
 
   return (
     <main className="confirmation-page">

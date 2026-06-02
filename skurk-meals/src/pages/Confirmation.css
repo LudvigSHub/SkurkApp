@@ -77,3 +77,41 @@
 .confirmation-actions .button {
   padding: 12px 24px;
 }
+
+.confirmation-empty {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 48px 32px;
+
+  border: 3px solid var(--color-primary);
+  border-radius: var(--radius-card);
+  background-color: var(--color-secondary);
+
+  text-align: center;
+}
+
+.confirmation-empty h1 {
+  color: var(--color-accent);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.confirmation-empty p {
+  max-width: 480px;
+  margin: 0 auto 28px;
+
+  color: var(--color-primary);
+  font-weight: 800;
+}
+
+.confirmation-empty-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.confirmation-empty-actions .button {
+  min-width: 160px;
+  padding: 14px 20px;
+}

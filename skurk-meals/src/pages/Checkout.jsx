@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
 import CheckoutForm from "../components/checkout/CheckoutForm";
@@ -89,6 +89,29 @@ function Checkout() {
       },
     });
   }, 5000);
+}
+
+if (cartItems.length === 0 && !isSubmitting) {
+  return (
+    <main className="checkout-page">
+      <section className="checkout-empty">
+        <h1>Din varukorg är tom</h1>
+        <p>
+          Du behöver lägga till minst en matlåda innan du kan gå vidare till checkout.
+        </p>
+
+        <div className="checkout-empty-actions">
+          <Link to="/menu" className="button button-primary">
+            Till menyn
+          </Link>
+
+          <Link to="/cart" className="button button-secondary">
+            Till varukorgen
+          </Link>
+        </div>
+      </section>
+    </main>
+  );
 }
 
     if (isSubmitting) {
