@@ -1,4 +1,9 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import {
+  login as loginRequest,
+  register as registerRequest,
+  getCurrentUser,
+} from "../services/api";
 
 const AuthContext = createContext();
 
@@ -12,44 +17,75 @@ export function AuthProvider({ children }) {
     return localStorage.getItem("token") || null;
   });
 
-  function login(username, password) {
-    if (username === "user" && password === "password") {
-      const loggedInUser = {
-        username: "user",
-      };
+  const [authLoading, setAuthLoading] = useState(true);
 
-      const fakeToken = "fake-jwt-token";
+  useEffect(() => {
+    async function loadCurrentUser() {
+      const savedToken = localStorage.getItem("token");
 
-      setUser(loggedInUser);
-      setToken(fakeToken);
+      if (!savedToken) {
+        setAuthLoading(false);
+        return;
+      }
 
-      localStorage.setItem("user", JSON.stringify(loggedInUser));
-      localStorage.setItem("token", fakeToken);
+      try {
+        const currentUser = await getCurrentUser();
 
-      return { success: true };
+        setUser(currentUser);
+        localStorage.setItem("user", JSON.stringify(currentUser));
+      } catch (error) {
+        logout();
+      } finally {
+        setAuthLoading(false);
+      }
     }
 
-    return {
-      success: false,
-      message: "Fel användarnamn eller lösenord",
-    };
+    loadCurrentUser();
+  }, []);
+
+  async function login(username, password) {
+    try {
+      const data = await loginRequest({ username, password });
+
+      setUser(data.user);
+      setToken(data.token);
+
+      localStorage.setItem("user", JSON.stringify(data.user));
+      localStorage.setItem("token", data.token);
+
+      return { success: true };
+    } catch (error) {
+      return {
+        success: false,
+        message: error.message || "Fel användarnamn eller lösenord",
+      };
+    }
   }
 
-  function register(username, email, password) {
-    const newUser = {
-      username,
-      email,
-    };
+  async function register(username, email, password, name = "") {
+    try {
+      await registerRequest({
+        username,
+        name,
+        email,
+        password,
+      });
 
-    const fakeToken = "fake-jwt-token";
+      const loginData = await loginRequest({ username, password });
 
-    setUser(newUser);
-    setToken(fakeToken);
+      setUser(loginData.user);
+      setToken(loginData.token);
 
-    localStorage.setItem("user", JSON.stringify(newUser));
-    localStorage.setItem("token", fakeToken);
+      localStorage.setItem("user", JSON.stringify(loginData.user));
+      localStorage.setItem("token", loginData.token);
 
-    return { success: true };
+      return { success: true };
+    } catch (error) {
+      return {
+        success: false,
+        message: error.message || "Kunde inte registrera konto",
+      };
+    }
   }
 
   function logout() {
@@ -67,6 +103,7 @@ export function AuthProvider({ children }) {
       value={{
         user,
         token,
+        authLoading,
         isAuthenticated,
         login,
         register,

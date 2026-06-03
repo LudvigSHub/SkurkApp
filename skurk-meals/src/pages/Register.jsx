@@ -15,6 +15,7 @@ function Register() {
   });
 
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -27,7 +28,7 @@ function Register() {
     setError("");
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     if (!formData.username.trim() || !formData.email.trim() || !formData.password.trim()) {
@@ -35,11 +36,17 @@ function Register() {
       return;
     }
 
-    const result = register(
+    
+      setIsSubmitting(true);
+      setError("");
+
+    const result = await register(
       formData.username,
       formData.email,
       formData.password
     );
+
+    setIsSubmitting(false);
 
     if (!result.success) {
       setError(result.message || "Något gick fel");
@@ -88,8 +95,8 @@ function Register() {
 
           {error && <p className="auth-error">{error}</p>}
 
-          <button className="button button-primary" type="submit">
-            Skapa konto
+          <button className="button button-primary" type="submit" disabled={isSubmitting}>
+            {isSubmitting ? "Skapar konto..." : "Skapa konto"}
           </button>
         </form>
 

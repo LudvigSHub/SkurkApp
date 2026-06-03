@@ -14,6 +14,7 @@ function Login() {
   });
 
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -26,10 +27,15 @@ function Login() {
     setError("");
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
-    const result = login(formData.username, formData.password);
+    setIsSubmitting(true);
+    setError("");
+
+    const result = await login(formData.username, formData.password);
+
+    setIsSubmitting(false);
 
     if (!result.success) {
       setError(result.message);
@@ -68,8 +74,8 @@ function Login() {
 
           {error && <p className="auth-error">{error}</p>}
 
-          <button className="button button-primary" type="submit">
-            Logga in
+          <button className="button button-primary" type="submit" disabled={isSubmitting}>
+            {isSubmitting ? "Loggar in..." : "Logga in"}
           </button>
         </form>
 
