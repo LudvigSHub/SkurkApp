@@ -66,10 +66,34 @@ export async function createOrder(orderData) {
   });
 }
 
+// AUTH
+export async function login({ username, password }) {
+  return request("/auth/login", {
+    method: "POST",
+    body: JSON.stringify({ username, password }),
+  });
+}
+
+export async function register({ username, name, email, password }) {
+  return request("/auth/register", {
+    method: "POST",
+    body: JSON.stringify({ username, name, email, password }),
+  });
+}
+
+export async function getCurrentUser() {
+  return request("/auth/me", {
+    method: "GET",
+  });
+}
+
 export default {
   getProducts,
+  createOrder,
+  login,
+  register,
+  getCurrentUser,
   saveToken,
   logout,
-  createOrder,
   isAuthenticated,
 };
