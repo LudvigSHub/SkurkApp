@@ -1,12 +1,8 @@
-// Express är ett populärt webbramverk för Node.js som gör det enkelt att bygga webbapplikationer och API:er. I det här exemplet skapar vi en enkel server som hanterar kontakter och användare, och vi ansluter till en databas innan servern startas.
-// Nodemon är ett verktyg som övervakar ändringar i koden och automatiskt startar om servern när en ändring sker, vilket underlättar utvecklingsprocessen.
-
-
 const express = require('express');
 const dotenv = require('dotenv').config();
 
 const contactRoutes = require('./routes/contactRoutes');
-const userRoutes = require('./routes/userRoutes');
+const authRoutes = require('./routes/authRoutes');
 const productRoutes = require("./routes/productRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 
@@ -29,7 +25,7 @@ app.use(express.json());
 
 // ROUTES
 app.use('/api/contacts', contactRoutes);
-app.use('/api/users', userRoutes);
+app.use('/api/auth', authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
 

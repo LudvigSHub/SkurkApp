@@ -29,7 +29,7 @@ const validateToken = asyncHandler(async (req, res, next) => {
     next();
 });
 
-// VERIFIERA token med ACCESS_TOKEN_SECRET från .env
+// VERIFIERA token med JWT_SECRET från .env
 
 // OM GILTLIGT: sätter req.user och kör next()
 
