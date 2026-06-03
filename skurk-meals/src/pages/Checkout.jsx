@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { createOrder } from "../services/api";
 
 import CheckoutForm from "../components/checkout/CheckoutForm";
 import CheckoutSummary from "../components/checkout/CheckoutSummary";
@@ -56,7 +57,7 @@ function Checkout() {
     }));
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     const isValid = validateForm();
@@ -65,30 +66,53 @@ function Checkout() {
       return;
     }
 
-    console.log("Kunduppgifter:", formData);
-    console.log("Varukorg:", cartItems);
-    console.log("Total:", cartTotal);
+   
 
-    const orderData = {
-      customer: formData,
-      items: cartItems,
-      total: cartTotal,
-    };
+  const orderData = {
+    customer: {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      address: formData.address,
+      postalCode: formData.postalCode,
+      city: formData.city,
+    },
+    deliveryDay: formData.deliveryDay,
+    paymentMethod: formData.paymentMethod,
+    items: cartItems.map((item) => ({
+      productId: item.id,
+      name: item.name,
+      quantity: item.quantity,
+      price: item.price,
+      image: item.image,
+      kcal: item.kcal,
+      protein: item.protein,
+    })),
+    totalPrice: cartTotal,
+  };
 
-    
-
+  try {
     setIsSubmitting(true);
 
+    await createOrder(orderData);
+
     setTimeout(() => {
+      clearCart();
 
-    clearCart();
+      navigate("/confirmation", {
+        state: {
+          order: orderData,
+        },
+      });
+    }, 5000);
+  } catch (error) {
+    setIsSubmitting(false);
 
-    navigate("/confirmation", {
-      state: {
-        order: orderData,
-      },
-    });
-  }, 5000);
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      submit: "Kunde inte skapa ordern. Testa igen.",
+    }));
+  }
 }
 
 if (cartItems.length === 0 && !isSubmitting) {

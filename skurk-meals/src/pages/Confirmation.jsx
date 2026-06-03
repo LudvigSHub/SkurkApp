@@ -31,43 +31,45 @@ function Confirmation() {
 }
 
   return (
-    <main className="confirmation-page">
-  <section className="confirmation-card">
-    <h1>Tack för din beställning!</h1>
+   <main className="confirmation-page">
+    <section className="confirmation-card">
+      <h1>Tack för din beställning!</h1>
 
-    <p>
-      Din leverans skickas till {order.customer.address}, {order.customer.city}.
-    </p>
+      <p>
+        Din leverans skickas till {order.customer.address},{" "}
+        {order.customer.postalCode} {order.customer.city}.
+      </p>
 
-    <p>Leveransdag: {order.customer.deliveryDay}</p>
+      <p>Leveransdag: {order.deliveryDay}</p>
+      <p>Betalningsmetod: {order.paymentMethod}</p>
 
-    <div className="confirmation-details">
-      <h2>Din order</h2>
+      <div className="confirmation-details">
+        <h2>Din order</h2>
 
-      <div className="confirmation-order-list">
-        {order.items.map((item) => (
-          <div key={item.id} className="confirmation-order-item">
-            <span>
-              {item.quantity} × {item.name}
-            </span>
-            <strong>{item.price * item.quantity} kr</strong>
-          </div>
-        ))}
+        <div className="confirmation-order-list">
+          {order.items.map((item) => (
+            <div key={item.productId} className="confirmation-order-item">
+              <span>
+                {item.quantity} × {item.name}
+              </span>
+              <strong>{item.price * item.quantity} kr</strong>
+            </div>
+          ))}
+        </div>
+
+        <div className="confirmation-total">
+          <span>Total</span>
+          <strong>{order.totalPrice} kr</strong>
+        </div>
       </div>
 
-      <div className="confirmation-total">
-        <span>Total</span>
-        <strong>{order.total} kr</strong>
+      <div className="confirmation-actions">
+        <Link to="/menu" className="button button-primary">
+          Till menyn
+        </Link>
       </div>
-    </div>
-
-    <div className="confirmation-actions">
-      <Link to="/menu" className="button button-primary">
-        Till menyn
-      </Link>
-    </div>
-  </section>
-</main>
+    </section>
+  </main>
   );
 }
 

@@ -8,6 +8,7 @@ const dotenv = require('dotenv').config();
 const contactRoutes = require('./routes/contactRoutes');
 const userRoutes = require('./routes/userRoutes');
 const productRoutes = require("./routes/productRoutes");
+const orderRoutes = require("./routes/orderRoutes");
 
 const connectDB = require('./config/dbConnection');
 const cors = require("cors")
@@ -30,7 +31,7 @@ app.use(express.json());
 app.use('/api/contacts', contactRoutes);
 app.use('/api/users', userRoutes);
 app.use("/api/products", productRoutes);
-
+app.use("/api/orders", orderRoutes);
 
 // STARTA servern
 const port = process.env.PORT || 3000;

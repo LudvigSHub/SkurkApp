@@ -58,9 +58,18 @@ export async function getProducts() {
   });
 }
 
+// ORDERS
+export async function createOrder(orderData) {
+  return request("/orders", {
+    method: "POST",
+    body: JSON.stringify(orderData),
+  });
+}
+
 export default {
   getProducts,
   saveToken,
   logout,
+  createOrder,
   isAuthenticated,
 };
