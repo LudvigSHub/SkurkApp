@@ -16,10 +16,10 @@ function Navbar() {
         </NavLink>
 
         <nav className="navbar-links">
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/menu">Menu</NavLink>
-          <NavLink to="/about">About us</NavLink>
-          <NavLink to="/contact">Contact</NavLink>
+          <NavLink to="/">Hem</NavLink>
+          <NavLink to="/menu">Meny</NavLink>
+          <NavLink to="/about">Om oss</NavLink>
+          <NavLink to="/contact">Kontakt</NavLink>
         </nav>
 
         <div className="navbar-actions">

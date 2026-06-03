@@ -10,6 +10,7 @@ function Register() {
 
   const [formData, setFormData] = useState({
     username: "",
+    name:"",
     email: "",
     password: "",
   });
@@ -31,7 +32,10 @@ function Register() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (!formData.username.trim() || !formData.email.trim() || !formData.password.trim()) {
+    if (!formData.username.trim() || 
+      !formData.email.trim() || 
+      !formData.password.trim() ||
+      !formData.name.trim()) {
       setError("Fyll i alla fält");
       return;
     }
@@ -43,7 +47,8 @@ function Register() {
     const result = await register(
       formData.username,
       formData.email,
-      formData.password
+      formData.password,
+      formData.name
     );
 
     setIsSubmitting(false);
@@ -69,6 +74,16 @@ function Register() {
               type="text"
               name="username"
               value={formData.username}
+              onChange={handleChange}
+            />
+          </label>
+
+          <label>
+            Namn
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
               onChange={handleChange}
             />
           </label>
