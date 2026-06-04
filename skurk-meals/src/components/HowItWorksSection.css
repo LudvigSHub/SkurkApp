@@ -1,5 +1,5 @@
 .how-section {
- width: min(760px, calc(100% - 64px));
+  width: min(760px, calc(100% - 64px));
   margin: 0 auto;
   padding: 36px 0 72px;
 
@@ -8,4 +8,21 @@
   gap: 40px;
   justify-content: center;
   align-items: start;
+}
+
+@media (max-width: 800px) {
+  .how-section {
+    width: min(100%, calc(100% - 32px));
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 32px 0 56px;
+  }
+}
+
+@media (max-width: 520px) {
+  .how-section {
+    width: min(100%, calc(100% - 24px));
+    gap: 24px;
+    padding: 28px 0 48px;
+  }
 }

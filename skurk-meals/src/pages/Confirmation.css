@@ -115,3 +115,92 @@
   min-width: 160px;
   padding: 14px 20px;
 }
+
+@media (max-width: 700px) {
+  .confirmation-page {
+    width: min(100%, calc(100% - 32px));
+    padding: 48px 0 72px;
+  }
+
+  .confirmation-card {
+    padding: 32px 24px;
+  }
+
+  .confirmation-card h1 {
+    font-size: clamp(28px, 8vw, var(--font-size-h1));
+  }
+
+  .confirmation-details {
+    margin-top: 28px;
+  }
+
+  .confirmation-actions {
+    flex-wrap: wrap;
+  }
+
+  .confirmation-empty {
+    padding: 40px 24px;
+  }
+}
+
+@media (max-width: 520px) {
+  .confirmation-page {
+    width: min(100%, calc(100% - 24px));
+    padding: 36px 0 56px;
+  }
+
+  .confirmation-card {
+    padding: 28px 20px;
+    border-width: 3px;
+  }
+
+  .confirmation-card h1 {
+    font-size: 28px;
+    line-height: 1.05;
+  }
+
+  .confirmation-card p {
+    font-size: 13px;
+  }
+
+  .confirmation-details h2 {
+    font-size: var(--font-size-h3);
+    text-align: center;
+  }
+
+  .confirmation-order-item {
+    gap: 12px;
+    font-size: 13px;
+  }
+
+  .confirmation-order-item span {
+    max-width: 190px;
+  }
+
+  .confirmation-total {
+    font-size: var(--font-size-h4);
+  }
+
+  .confirmation-actions .button {
+    width: 100%;
+    max-width: 220px;
+  }
+
+  .confirmation-empty {
+    padding: 36px 20px;
+  }
+
+  .confirmation-empty h1 {
+    font-size: var(--font-size-h3);
+  }
+
+  .confirmation-empty-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .confirmation-empty-actions .button {
+    width: 100%;
+    max-width: 220px;
+  }
+}

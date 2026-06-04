@@ -23,3 +23,25 @@
 .category-filter-button.active {
   color: var(--color-accent);
 }
+
+@media (max-width: 900px) {
+  .category-filter {
+    flex-wrap: wrap;
+    gap: 18px 28px;
+  }
+
+  .category-filter-button {
+    font-size: var(--font-size-h3);
+  }
+}
+
+@media (max-width: 520px) {
+  .category-filter {
+    margin-top: 28px;
+    gap: 14px 18px;
+  }
+
+  .category-filter-button {
+    font-size: var(--font-size-h4);
+  }
+}

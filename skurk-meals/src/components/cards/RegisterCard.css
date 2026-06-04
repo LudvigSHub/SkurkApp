@@ -39,3 +39,35 @@
   bottom: -60px;
   pointer-events: none;
 }
+
+@media (max-width: 800px) {
+  .register-card {
+    width: 100%;
+    max-width: 360px;
+    height: 300px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .register-card {
+    max-width: 320px;
+    height: 250px;
+    padding: 24px 22px;
+    border-width: 4px;
+  }
+
+  .register-card h2 {
+    font-size: var(--font-size-h3);
+  }
+
+  .register-card .button {
+    width: 220px;
+    font-size: var(--font-size-h5);
+  }
+
+  .register-card-mascot {
+    width: 210px;
+    bottom: -54px;
+  }
+}

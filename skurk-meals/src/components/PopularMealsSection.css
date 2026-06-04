@@ -34,3 +34,52 @@
   gap: 32px;
   justify-content: center;
 }
+
+@media (max-width: 700px) {
+  .popular-meals-section {
+    width: 100%;
+    padding: 36px 0 56px;
+    overflow: hidden;
+  }
+
+  .popular-meals-header {
+    padding: 0 24px;
+  }
+
+  .popular-meals-header h2 {
+    font-size: clamp(24px, 7vw, var(--font-size-h2));
+  }
+
+  .popular-meals-header p {
+    max-width: 320px;
+  }
+
+  .popular-meals-grid {
+    margin-top: 24px;
+    padding: 0 24px 12px;
+
+    display: flex;
+    gap: 20px;
+
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+
+    justify-content: flex-start;
+  }
+
+  .popular-meals-grid > * {
+    flex: 0 0 270px;
+    scroll-snap-align: center;
+  }
+}
+
+@media (max-width: 380px) {
+  .popular-meals-grid {
+    padding-inline: 18px;
+  }
+
+  .popular-meals-grid > * {
+    flex-basis: 260px;
+  }
+}
