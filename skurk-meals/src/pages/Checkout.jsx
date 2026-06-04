@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { createOrder } from "../services/api";
+import { useAuth } from "../context/AuthContext";
 
 import CheckoutForm from "../components/checkout/CheckoutForm";
 import CheckoutSummary from "../components/checkout/CheckoutSummary";
@@ -12,7 +13,7 @@ import "./Checkout.css";
 function Checkout() {
   const navigate = useNavigate();
   const { cartItems, cartTotal, clearCart } = useCart();
-
+  const { user, isAuthenticated } = useAuth();
   const [errors, setErrors] = useState({});
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -28,6 +29,20 @@ function Checkout() {
     paymentMethod: "Swish",
   });
 
+  // Om användaren är inloggad, förifyll namn och email i checkout-formuläret
+  useEffect(() => {
+    if (!user) {
+      return;
+    }
+    
+    setFormData((prevData) => ({
+      ...prevData,
+      name: prevData.name || user.name || user.username || "",
+      email: prevData.email || user.email || "",
+    }));
+  }, [user]);
+
+  // simpel validering
   function validateForm() {
     const newErrors = {};
 
@@ -43,6 +58,9 @@ function Checkout() {
     return Object.keys(newErrors).length === 0;
   }
 
+
+  // Hantera ändringar i formuläret 
+  // rensa eventuella valideringsfel för det fältet som ändras
   function handleChange(e) {
     const { name, value } = e.target;
 
