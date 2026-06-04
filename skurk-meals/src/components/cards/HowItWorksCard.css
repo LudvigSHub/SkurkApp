@@ -50,3 +50,34 @@
   line-height: 1.25;
   text-transform: uppercase;
 }
+
+@media (max-width: 800px) {
+  .how-card {
+    width: 100%;
+    max-width: 360px;
+    height: auto;
+    min-height: 280px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .how-card {
+    max-width: 320px;
+    min-height: auto;
+    padding: 24px 22px;
+    border-width: 4px;
+  }
+
+  .how-card h2 {
+    font-size: var(--font-size-h3);
+  }
+
+  .how-card ul {
+    font-size: 13px;
+  }
+
+  .how-card p {
+    font-size: 10px;
+  }
+}
