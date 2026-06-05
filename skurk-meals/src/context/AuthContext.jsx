@@ -5,20 +5,24 @@ import {
   getCurrentUser,
 } from "../services/api";
 
+// Skapar context för auth så att login/logout kan användas i hela appen
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
+  // Hämtar sparad användare från localStorage om sidan laddas om
   const [user, setUser] = useState(() => {
     const savedUser = localStorage.getItem("user");
     return savedUser ? JSON.parse(savedUser) : null;
   });
 
+  // Hämtar sparad token från localStorage
   const [token, setToken] = useState(() => {
     return localStorage.getItem("token") || null;
   });
 
   const [authLoading, setAuthLoading] = useState(true);
 
+  // Körs när appen startar och kontrollerar om användaren redan är inloggad
   useEffect(() => {
     async function loadCurrentUser() {
       const savedToken = localStorage.getItem("token");
@@ -34,6 +38,7 @@ export function AuthProvider({ children }) {
         setUser(currentUser);
         localStorage.setItem("user", JSON.stringify(currentUser));
       } catch (error) {
+        // Om token är ogiltig loggas användaren ut
         logout();
       } finally {
         setAuthLoading(false);
@@ -43,6 +48,7 @@ export function AuthProvider({ children }) {
     loadCurrentUser();
   }, []);
 
+  // Loggar in användaren via API och sparar user + token
   async function login(username, password) {
     try {
       const data = await loginRequest({ username, password });
@@ -62,6 +68,7 @@ export function AuthProvider({ children }) {
     }
   }
 
+  // Skapar ett konto och loggar sedan in användaren direkt
   async function register(username, email, password, name = "") {
     try {
       await registerRequest({
@@ -88,6 +95,7 @@ export function AuthProvider({ children }) {
     }
   }
 
+  // Rensar både state och localStorage vid logout
   function logout() {
     setUser(null);
     setToken(null);
@@ -115,6 +123,7 @@ export function AuthProvider({ children }) {
   );
 }
 
+// Custom hook så komponenter enkelt kan använda auth-contexten
 export function useAuth() {
   const context = useContext(AuthContext);
 

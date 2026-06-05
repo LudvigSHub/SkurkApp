@@ -1,10 +1,13 @@
 import { createContext, useContext, useState } from "react";
 
+// Skapar context för varukorgen så den kan användas i hela appen
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
 
+  // Lägger till en produkt i varukorgen
+  // Om produkten redan finns ökas quantity istället
   function addToCart(product) {
     setCartItems((prevItems) => {
       const existingItem = prevItems.find((item) => item.id === product.id);
@@ -21,12 +24,14 @@ export function CartProvider({ children }) {
     });
   }
 
+  // Tar bort en produkt helt från varukorgen
   function removeFromCart(productId) {
     setCartItems((prevItems) =>
       prevItems.filter((item) => item.id !== productId)
     );
   }
 
+  // Ökar antal på en produkt
   function increaseQuantity(productId) {
     setCartItems((prevItems) =>
       prevItems.map((item) =>
@@ -37,6 +42,8 @@ export function CartProvider({ children }) {
     );
   }
 
+  // Minskar antal på en produkt
+  // Om quantity blir 0 tas produkten bort
   function decreaseQuantity(productId) {
     setCartItems((prevItems) =>
       prevItems
@@ -49,15 +56,18 @@ export function CartProvider({ children }) {
     );
   }
 
+  // Tömmer hela varukorgen, används efter lagd order
   function clearCart() {
     setCartItems([]);
   }
 
+  // Räknar ut totalt antal produkter i varukorgen
   const cartCount = cartItems.reduce(
     (sum, item) => sum + item.quantity,
     0
   );
 
+  // Räknar ut totalpriset för hela varukorgen
   const cartTotal = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
@@ -81,6 +91,7 @@ export function CartProvider({ children }) {
   );
 }
 
+// Custom hook så komponenter enkelt kan använda varukorgen
 export function useCart() {
   const context = useContext(CartContext);
 
