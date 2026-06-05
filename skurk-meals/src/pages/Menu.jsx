@@ -9,12 +9,17 @@ import "./Menu.css";
 function Menu() {
   const [selectedFilter, setSelectedFilter] = useState("Alla rätter");
 
+  // Hämtar favorit-id:n från FavoritesContext
   const { favoriteIds } = useFavorites();
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  // Filtrerar produkterna beroende på vilken kategori användaren valt
+  // "Alla rätter" visar alla produkter
+  // "Favoriter" visar bara produkter som finns i favoriteIds
+  // Annars filtreras på kategori
   const filteredProducts =
     selectedFilter === "Alla rätter"
       ? products
@@ -22,6 +27,9 @@ function Menu() {
       ? products.filter((product) => favoriteIds.includes(product.id))
       : products.filter((product) => product.category === selectedFilter);
 
+      // Hämtar produkter från backend när sidan laddas
+      // Hanterar loading och error state
+      // useEffect körs när komponenten mountas, alltså när sidan öppnas
       useEffect(() => {
         async function loadProducts(){
           try {

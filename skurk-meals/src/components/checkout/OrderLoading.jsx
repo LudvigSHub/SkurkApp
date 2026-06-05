@@ -6,6 +6,7 @@ import mascotTop from "../../assets/animations/Mascot_Animation_Top.png";
 
 import "./OrderLoading.css";
 
+// Bilderna som används för mascot-animationen
 const mascotFrames = [
   mascotBottom,
   mascotMiddle,
@@ -16,11 +17,14 @@ const mascotFrames = [
 function OrderLoading() {
   const [frameIndex, setFrameIndex] = useState(0);
 
+   // Byter bild med ett intervall för att skapa en enkel animation
+   // Varje 180ms byts bilden i ordning: bottom -> middle -> top -> middle -> bottom -> ...
   useEffect(() => {
     const intervalId = setInterval(() => {
       setFrameIndex((prevIndex) => (prevIndex + 1) % mascotFrames.length);
     }, 180);
 
+    // Rensar intervallet när komponenten tas bort
     return () => clearInterval(intervalId);
   }, []);
 

@@ -1,7 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv').config();
 
-const contactRoutes = require('./routes/contactRoutes');
+
 const authRoutes = require('./routes/authRoutes');
 const productRoutes = require("./routes/productRoutes");
 const orderRoutes = require("./routes/orderRoutes");
@@ -24,7 +24,6 @@ app.use(express.json());
 
 
 // ROUTES
-app.use('/api/contacts', contactRoutes);
 app.use('/api/auth', authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
